@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una città, mille note - Milano</title>
+    
+    <!-- Leaflet CSS -->
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/cssPCTO.css">
+    
+    </head>
+<body>
+    <div class="floating-notes">
+        <div class="floating-note" style="left: 10%; animation-delay: 0s;">♪</div>
+        <div class="floating-note" style="left: 20%; animation-delay: 2s;">♫</div>
+        <div class="floating-note" style="left: 30%; animation-delay: 4s;">♪</div>
+        <div class="floating-note" style="left: 40%; animation-delay: 1s;">♬</div>
+        <div class="floating-note" style="left: 50%; animation-delay: 3s;">♪</div>
+        <div class="floating-note" style="left: 60%; animation-delay: 5s;">♫</div>
+        <div class="floating-note" style="left: 70%; animation-delay: 2.5s;">♪</div>
+        <div class="floating-note" style="left: 80%; animation-delay: 4.5s;">♬</div>
+        <div class="floating-note" style="left: 90%; animation-delay: 1.5s;">♪</div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Una città, mille note</h1>
+            <div class="city-badge">Milano suona più forte quando tutti possono ascoltarla</div><br><br>
+            
+            
+        </header>
+
+        <div class="main-content">
+            <div class="map-section">
+                <div class="map-container">
+                    <div class="map-header">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h2>Mappa Interattiva</h2>
+                    </div>
+                    <div id="map"></div>
+                </div>
+            </div>
+
+            <div class="venues-sidebar">
+                <div class="sidebar-header">
+                    <i class="fas fa-music"></i>
+                    <h2>Luoghi Musicali</h2>
+                </div>
+                
+                <div class="venue-card" data-venue="spirit">
+                    <div class="accessibility-badge">
+                        <i class="fas fa-wheelchair"></i> Accessibile
+                    </div>
+                    <div class="venue-header">
+                        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=150&h=150&fit=crop&crop=center" alt="Spirit de Milan" class="venue-image">
+                        <div class="venue-info">
+                            <div class="venue-name">Spirit de Milan</div>
+                            <div class="venue-type">Jazz Club & Live Music</div>
+                        </div>
+                    </div>
+                    <div class="venue-description">
+                       Un’ex fabbrica trasformata in un vivace punto di ritrovo, dove la tradizione meneghina prende vita con musica dal vivo, balli swing e buon cibo. L’accessibilità è garantita con ingressi privi di barriere, spazi ampi e servizi dedicati. Le aree interne sono facilmente raggiungibili e il locale offre posti riservati per chi ha esigenze specifiche, assicurando a tutti un’esperienza autentica e inclusiva.
+
+                    </div>
+                    <a href="https://spiritdemilan.it/" target="_blank" class="website-link">
+                        <i class="fas fa-globe"></i> Sito Web & Eventi
+                    </a>
+                    <div class="venue-details">
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-map-marker-alt"></i> Indirizzo
+                            </div>
+                            <div class="detail-content">Via Bovisasca, 59, Milano</div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-subway"></i> Come arrivare
+                            </div>
+                            <div class="detail-content">Metro: M3 (Gialla) - Fermata Maciachini Bus: 42,51, Tram: 7</div>
+                            <button class="route-button" onclick="calcolaPercorso('45.5071151934232, 9.159624300412485')">
+                                <i class="fas fa-route"></i> Calcola Percorso
+                            </button>
+                            <div class="transport-icons">
+                                <div class="transport-icon metro">M3</div>
+                                <div class="transport-icon bus">42</div>
+                                <div class="transport-icon bus">51</div>
+                                <div class="transport-icon tram">7</div>
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-wheelchair"></i> Accessibilità
+                            </div>
+                            <div class="detail-content">Ingresso a livello strada, bagni accessibili, spazi dedicati per sedie a rotelle</div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-phone"></i> Contatti
+                            </div>
+                            <div class="detail-content">+39 3667215569 (17:00-19:30)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="venue-card" data-venue="tempio">
+                    <div class="accessibility-badge">
+                        <i class="fas fa-wheelchair"></i> Accessibile
+                    </div>
+                    <div class="venue-header">
+                        <img src="https://imgproxy.ra.co/_/quality:66/w:1442/rt:fill/aHR0cHM6Ly9pbWFnZXMucmEuY28vYWZkOTdmYzc4ZDFkOGQ3ZTlmMjkyMjMxYWI3MWQ4YjZmNWQ0NTYyZS5qcGc=" alt="Tempio Del Futuro Perduto" class="venue-image">
+                        <div class="venue-info">
+                            <div class="venue-name">Tempio Del Futuro Perduto</div>
+                            <div class="venue-type">Alternative & Electronic Music</div>
+                        </div>
+                    </div>
+                    <div class="venue-description">
+                       Un luogo che incarna la trasformazione urbana: da una piazza di spaccio a un centro culturale aperto e inclusivo. Qui l’arte e la musica si fondono con l’impegno sociale, dando vita a uno spazio libero da barriere, dotato di rampe, ascensori e percorsi agevolati. Ogni evento è pensato per garantire la partecipazione di tutti, in un ambiente accogliente e accessibile.
+                    </div>
+                    <a href="https://www.tempiodelfuturo.art/" target="_blank" class="website-link">
+                        <i class="fab fa-globe"></i> Sito Web & Eventi
+                    </a>
+                    <div class="venue-details">
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-map-marker-alt"></i> Indirizzo
+                            </div>
+                            <div class="detail-content">Via Luigi Nono, 9/7, 20154 Milano MI</div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-subway"></i> Come arrivare
+                            </div>
+                            <div class="detail-content">Metro: M5 (lilla) - Fermata cenisio/monumentale, Tram: 14, treno suburbano e scendere a garibaldi.</div>
+                            <button class="route-button" onclick="calcolaPercorso('45.486884125287844, 9.175938621870953')">
+                                <i class="fas fa-route"></i> Calcola Percorso
+                            </button>
+                            <div class="transport-icons">
+                                <div class="transport-icon metro">M5</div>
+                                <div class="transport-icon tram">14</div>
+                                <div class="transport-icon treno">S1</div>
+                                <div class="transport-icon treno">S2</div>
+                                <div class="transport-icon treno">S5</div>
+                                <div class="transport-icon treno">S6</div>
+                                <div class="transport-icon treno">S13</div>
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-wheelchair"></i> Accessibilità
+                            </div>
+                            <div class="detail-content">Accesso facilitato, rampe per sedie a rotelle, bagni adattati</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="venue-card" data-venue="base">
+                    <div class="accessibility-badge">
+                        <i class="fas fa-wheelchair"></i> Accessibile
+                    </div>
+                    <div class="venue-header">
+                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=150&h=150&fit=crop&crop=center" alt="Base Milano" class="venue-image">
+                        <div class="venue-info">
+                            <div class="venue-name">Base Milano</div>
+                            <div class="venue-type">Centro Culturale & Concerti</div>
+                        </div>
+                    </div>
+                    <div class="venue-description">
+                        Un ex stabilimento industriale reinventato come polo culturale, dove innovazione e creatività si incontrano. L’accessibilità è una priorità: ingressi senza barriere, ascensori per ogni piano e percorsi agevolati permettono a tutti di vivere l’esperienza senza difficoltà. Gli spazi sono pensati per accogliere ogni tipo di pubblico, con segnaletica chiara e servizi dedicati, offrendo un’esperienza inclusiva e coinvolgente.
+
+                    </div>
+                    <a href="https://base.milano.it/" target="_blank" class="website-link">
+                        <i class="fas fa-globe"></i> Sito Web & Eventi
+                    </a>
+                    <div class="venue-details">
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-map-marker-alt"></i> Indirizzo
+                            </div>
+                            <div class="detail-content">V. Ambrogio Bergognone da Fossano, 34, 20144 Milano MI</div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-subway"></i> Come arrivare
+                            </div>
+                            <div class="detail-content">Metro M2 (Verde) - Fermata Porta genova</div>
+                            <button class="route-button" onclick="calcolaPercorso('45.457632841884575, 9.16328905222128')">
+                                <i class="fas fa-route"></i> Calcola Percorso
+                            </button>
+                            <div class="transport-icons">
+                                <div class="transport-icon metro">M2</div>
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-wheelchair"></i> Accessibilità
+                            </div>
+                            <div class="detail-content">Completamente accessibile, ascensori, bagni per disabili, postazioni dedicate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="venue-card" data-venue="santeria">
+                    <div class="accessibility-badge">
+                        <i class="fas fa-wheelchair"></i> Accessibile
+                    </div>
+                    <div class="venue-header">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=150&h=150&fit=crop&crop=center" alt="Santeria Social Club" class="venue-image">
+                        <div class="venue-info">
+                            <div class="venue-name">Santeria Social Club</div>
+                            <div class="venue-type">Live Music & Social Hub</div>
+                        </div>
+                    </div>
+                    <div class="venue-description">
+                        Un centro culturale poliedrico, dove musica, teatro e gastronomia si fondono in un ambiente accogliente e privo di barriere. Gli ingressi sono privi di ostacoli, gli spazi interni garantiscono una mobilità fluida e ogni area è progettata per accogliere tutti. L’atmosfera rilassata e inclusiva rende Santeria un luogo perfetto per socializzare e partecipare agli eventi senza limitazioni.
+
+                    </div>
+                    <a href="https://www.santeriasocialclub.com/" target="_blank" class="website-link">
+                        <i class="fas fa-globe"></i> Sito Web & Eventi
+                    </a>
+                    <div class="venue-details">
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-map-marker-alt"></i> Indirizzo
+                            </div>
+                            <div class="detail-content">Viale Toscana, 31, 20136 Milano MI</div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-subway"></i> Come arrivare
+                            </div>
+                            <div class="detail-content">tram 15 scendere in tibaldi/giambologna, bus 79 scendere in via toscana/castelbarco, bus 91/90 e scendere in via toscana, treno suburbano S9 scendere in tibaldi </div>
+                            <button class="route-button" onclick="calcolaPercorso('45.45088950390785, 9.185261708036704')">
+                                <i class="fas fa-route"></i> Calcola Percorso
+                            </button>
+                            <div class="transport-icons">
+                                <div class="transport-icon tram">15</div>
+                                <div class="transport-icon bus">79</div>
+                                <div class="transport-icon bus">90</div>
+                                <div class="transport-icon bus">91</div>
+                                <div class="transport-icon treno">S9</div>
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-title">
+                                <i class="fas fa-wheelchair"></i> Accessibilità
+                            </div>
+                            <div class="detail-content">Ingresso accessibile, bagni adattati, spazi riservati per sedie a rotelle</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <h3><i class="fas fa-info-circle"></i> Legenda</h3>
+            <div class="transport-icons">
+                <table>
+                    <tr>
+                               <td><div class="transport-icon tram"></div></td>
+                               <td>TRAM</td>
+                    
+                                <td><div class="transport-icon bus"></div></td>
+                                <td>BUS</td>
+                   
+                                <td><div class="transport-icon treno"></div></td>
+                                <td>TRENO</td>
+                    
+                                <td><div class="transport-icon metro"></div></td>
+                                <td>METRO</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div class="legend-tip">
+                <i class="fas fa-lightbulb"></i> Clicca sui marker sulla mappa o sulle card per scoprire dettagli sui luoghi e calcolare i percorsi!
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3><i class="fas fa-music"></i> Una città, mille note</h3>
+            <p>Milano suona più forte quando tutti possono ascoltarla</p>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Contatti</h4>
+            <p><i class="fas fa-envelope"></i> capomat08@gmail.com</p>
+            <p><i class="fas fa-envelope"></i> houessoukrm@gmail.com</p>
+            <p><i class="fas fa-envelope"></i> padmeferri1975@gmail.com</p>
+            <p><i class="fas fa-envelope"></i> borgarellibianca@gmail.com</p>
+            
+        </div>
+        
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 Una città, mille note. Progetto per l'accessibilità musicale a Milano.</p>
+    </div>
+</footer>
+
+
+    <script>
+        // Initialize map
+        const map = L.map('map').setView([45.4642, 9.1900], 12);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        // Layer OpenStreetMap
+        const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        });
+
+        // Layer Satellitare Esri
+        const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: '© Esri, Maxar, Earthstar Geographics',
+            maxZoom: 18
+        });
+
+        // Layer Ibrido (satellite + etichette)
+        const hybridLayer = L.layerGroup([
+            L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: '© Esri, Maxar, Earthstar Geographics'
+            }),
+            L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+                attribution: ''
+            })
+        ]);
+
+        // Layer Topografico
+        const topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenTopoMap contributors',
+            maxZoom: 17
+        });
+
+        // Aggiungi layer OpenStreetMap come default
+        osmLayer.addTo(map);
+
+        // Controllo layer
+        const baseMaps = {
+            "🗺️ Stradale": osmLayer,
+            "🛰️ Satellitare": satelliteLayer,
+            "🔗 Ibrida": hybridLayer,
+            "🏔️ Topografica": topoLayer
+        };
+
+        L.control.layers(baseMaps).addTo(map);
+
+
+        // Venues data
+        const venues = {
+            spirit: {
+                coords: [45.506964813420524, 9.159366808352146],
+                name: "Spirit de Milan",
+                type: "Jazz Club & Live Music",
+                address: "Via Bovisasca, 57/59, 20157 Milano MI",
+                image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=150&h=150&fit=crop&crop=center"
+            },
+            tempio: {
+                coords: [45.48574784256252, 9.175703254381123],
+                name: "Tempio Del Futuro Perduto", 
+                type: "Alternative & Electronic Music",
+                address: "Via Luigi Nono, 9/7, 20154 Milano MI",
+                image: "https://imgproxy.ra.co/_/quality:66/w:1442/rt:fill/aHR0cHM6Ly9pbWFnZXMucmEuY28vYWZkOTdmYzc4ZDFkOGQ3ZTlmMjkyMjMxYWI3MWQ4YjZmNWQ0NTYyZS5qcGc="
+                
+            },
+            base: {
+                coords: [45.45252021278818, 9.164146366020764],
+                name: "Base Milano",
+                type: "Centro Culturale & Concerti", 
+                address: "Via Bergognone, 34, 20144 Milano MI",
+                image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=150&h=150&fit=crop&crop=center"
+            },
+            santeria: {
+                coords: [45.445849351543174, 9.188415881363776],
+                name: "Santeria Social Club",
+                type: "Live Music & Social Hub",
+                address: "Viale Toscana, 31, 20136 Milano MI", 
+                image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=150&h=150&fit=crop&crop=center"
+            }
+        };
+
+        const markers = {};
+
+        // Add markers to map
+        Object.keys(venues).forEach(key => {
+            const venue = venues[key];
+            const markerClass = `marker-${key}`;
+            
+            const customIcon = L.divIcon({
+                className: `custom-marker ${markerClass}`,
+                html: '<i class="fas fa-music"></i>',
+                iconSize: [50, 50],
+                iconAnchor: [25, 25]
+            });
+
+            const marker = L.marker(venue.coords, { icon: customIcon }).addTo(map);
+            
+           const popupContent = `
+    <div class="popup-content">
+        <img src="${venue.image}" alt="${venue.name}" class="popup-image">
+        <div class="popup-title">${venue.name}</div>
+        <div class="popup-type">${venue.type}</div>
+        <div class="popup-address">${venue.address}</div>
+        <div class="popup-coordinates"><strong>📍 ${venue.coords[0].toFixed(10)}, ${venue.coords[1].toFixed(10)}</div>
+        <button class="popup-button" onclick="selectVenue('${key}')">Vedi Dettagli</button>
+    </div>
+`;
+            
+            marker.bindPopup(popupContent);
+            markers[key] = marker;
+        });
+
+        // Venue card interactions
+        document.querySelectorAll('.venue-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const venueKey = this.dataset.venue;
+                selectVenue(venueKey);
+            });
+        });
+
+        function selectVenue(venueKey) {
+            // Remove active class from all cards
+            document.querySelectorAll('.venue-card').forEach(card => {
+                card.classList.remove('active');
+                const details = card.querySelector('.venue-details');
+                if (details) details.classList.remove('active');
+            });
+
+            // Add active class to selected card
+            const selectedCard = document.querySelector(`[data-venue="${venueKey}"]`);
+            if (selectedCard) {
+                selectedCard.classList.add('active');
+                const details = selectedCard.querySelector('.venue-details');
+                if (details) details.classList.add('active');
+                
+                // Scroll to selected card
+                selectedCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            // Center map on selected venue
+            const venue = venues[venueKey];
+            if (venue) {
+                map.setView(venue.coords, 15);
+                markers[venueKey].openPopup();
+            }
+        }
+
+        function calcolaPercorso(destination) {
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=transit`;
+            window.open(url, '_blank');
+        }
+
+        // Add some interactivity to floating notes
+        setInterval(() => {
+            const notes = document.querySelectorAll('.floating-note');
+            notes.forEach(note => {
+                if (Math.random() < 0.1) {
+                    note.style.animationDelay = Math.random() * 5 + 's';
+                }
+            });
+        }, 3000);
+    </script>
+</body>
+</html>

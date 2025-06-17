@@ -1,0 +1,984 @@
+     * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color:#ffffff;
+            min-height: 100vh;
+           background-color:   #4ecdc4;
+            overflow-x: hidden;
+        }
+
+        /* Decorative background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 193, 7, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-notes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-note {
+            position: absolute;
+            font-size: 2rem;
+            color: rgb(255, 255, 255);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        header {
+            
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            padding: 60px 40px;
+            
+        }
+
+        header::before {
+            content: '♪';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+           background-color:   #4ecdc4;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h1 {
+            font-family: 'EB Garamond', serif;
+            font-size: 8rem;
+            font-weight: 900;
+            background-color: #782182;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        
+        .city-badge {
+            color:  #782182;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+             font-family: 'Poppins', sans-serif;
+
+        
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 500px;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .map-section {
+            position: relative;
+        }
+
+        .map-container {
+            background-color: #782182;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            opacity: 0.9;
+        }
+
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background-size: 200% 100%;
+            
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .map-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 15px;
+        }
+
+        .map-header h2 {
+           font-family: 'EB Garamond', serif;
+            font-size: 2.2rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .map-header i {
+            font-size: 2rem;
+            color: #4ecdc4;
+            animation: pulse 2s infinite;
+        }
+      
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        #map {
+            width: 100%;
+            height: 550px;
+            border-radius: 20px;
+            border: 3px solid rgba(78, 205, 196, 0.3);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .venues-sidebar {
+            background-color: #782182;
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-height: 700px;
+            overflow-y: auto;
+            position: relative;
+            opacity: 0.9;
+        }
+
+        .venues-sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background-size: 200% 100%;
+            border-radius: 25px 25px 0 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar-header h2 {
+             font-family: 'EB Garamond', serif;
+            font-size: 1.8rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .sidebar-header i {
+            font-size: 1.5rem;
+            color: #4ecdc4;
+        }
+
+        .venue-card {
+            background-color: #3c3791;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .venue-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .venue-card:hover::before {
+            left: 100%;
+        }
+
+        .venue-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: #4ecdc4;
+        }
+
+        .venue-card.active {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.2), rgba(255, 107, 107, 0.1));
+            border: 2px solid #4ecdc4;
+            box-shadow: 0 20px 40px rgba(78, 205, 196, 0.3);
+        }
+
+        .venue-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .venue-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 3px solid rgba(78, 205, 196, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .venue-card:hover .venue-image {
+            border-color: #4ecdc4;
+            transform: scale(1.05);
+        }
+
+        .venue-info {
+            flex: 1;
+        }
+
+        .venue-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .venue-type {
+            color:  #4ecdc4;
+            font-size: 0.95rem;
+            font-weight: 800;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        .accessibility-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .venue-description {
+            color: #ffffff;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            font-weight: 400;
+             font-family: 'Poppins', sans-serif;
+    
+        }
+
+        .venue-details {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid rgb(178, 48, 225);
+        }
+
+        .venue-details.active {
+            display: block;
+            animation: slideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .detail-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(235, 235, 235, 0.936);
+            border-radius: 12px;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        .detail-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .detail-title i {
+            color: #4ecdc4;
+            font-size: 1.1rem;
+        }
+
+        .detail-content {
+            color: #34495e;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .route-button {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .route-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .transport-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            text-align: center;
+            color: #fff;
+           
+        }
+
+        .transport-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(255, 255, 255);
+            font-size: 12px;
+             margin-left: 12rem;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+            
+            
+        }
+        ul {
+             list-style: none;
+        }
+
+        .transport-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .metro { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .bus { background: linear-gradient(135deg, #2c0ac7, #089da7); }
+        .tram { background: linear-gradient(135deg, #e1c402, #efa700); }
+        .treno { background: linear-gradient(135deg, #0bcb5b, #50695b); }
+
+        .website-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color:  #4ecdc4;
+            color: #3c3791;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .website-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .legend {
+           background-color: #782182;
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+        }
+
+        .legend h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: white;
+            font-weight: 400;
+        }
+
+        .legend-marker {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .normal-venue { background: linear-gradient(135deg, #ff6b6b, #ee5a52); }
+        .selected-venue { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+
+        .legend-tip {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 193, 7, 0.1);
+            border-radius: 15px;
+            border-left: 4px solid #ffd93d;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300; 
+        }
+
+        .custom-marker {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            border: 4px solid white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .custom-marker::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .custom-marker:hover {
+            transform: scale(1.3);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+        }
+
+        .custom-marker:hover::after {
+            border-color: rgba(255, 255, 255, 0.5);
+            animation: ripple 1s infinite;
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .marker-spirit { background-color: rgba(214,92,158); }
+        .marker-tempio { background-color: rgba(217,87,92); }
+        .marker-base { background-color: rgba(247,166,59); }
+        .marker-santeria { background-color: rgba(153,214,94); }
+
+        .popup-content {
+            text-align: center;
+            min-width: 220px;
+            padding: 10px;
+        }
+
+        .popup-image {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border: 2px solid rgba(78, 205, 196, 0.3);
+        }
+
+        .popup-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .popup-type {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .popup-address {
+            color: #34495e;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .popup-button {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(78, 205, 196, 0.3);
+        }
+
+        .popup-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .venues-sidebar {
+                max-height: 500px;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            #map {
+                height: 400px;
+            }
+            
+            .venue-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .venue-image {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .map-container,
+            .venues-sidebar {
+                padding: 25px;
+            }
+        }
+
+        /* Custom scrollbar */
+        .venues-sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .venues-sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .venues-sidebar::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            border-radius: 10px;
+        }
+
+        .venues-sidebar::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #44a08d, #4ecdc4);
+        }
+    .footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 40px 0 20px;
+    margin-top: 50px;
+    }
+
+    .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.footer-section h3, .footer-section h4 {
+    margin-bottom: 15px;
+    color: #ecf0f1;
+}
+
+.footer-section p {
+    margin: 8px 0;
+    color: #bdc3c7;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: #bdc3c7;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #3498db;
+}
+
+.footer-bottom {
+    border-top: 1px solid #34495e;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    color: #95a5a6;
+    font-size: 14px;
+}
+/* Reset e base mobile */
+@media (max-width: 768px) {
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+    
+    .container {
+        padding: 10px;
+        max-width: 100%;
+    }
+    
+    /* Header completamente responsive */
+    header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+        margin: 10px 0;
+        word-wrap: break-word;
+    }
+    
+    .city-badge {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+        margin: 10px auto;
+        display: block;
+        width: fit-content;
+    }
+    
+    /* Layout principale - forza stack verticale */
+    .main-content {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    /* Mappa mobile ottimizzata */
+    .map-section {
+        width: 100% !important;
+        order: 1;
+    }
+    
+    .map-container {
+        margin: 0;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    
+    #map {
+        height: 250px !important;
+        width: 100%;
+    }
+    
+    /* Sidebar venues mobile */
+    .venues-sidebar {
+        width: 100% !important;
+        order: 2;
+        padding: 0;
+    }
+    
+    /* Cards completamente ridisegnate per mobile */
+    .venue-card {
+        margin: 0 0 15px 0;
+        padding: 15px;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .venue-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .venue-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+    
+    .venue-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 5px 0;
+    }
+    
+    .venue-type {
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+    
+    .venue-description {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin: 10px 0;
+        text-align: left;
+    }
+    
+    /* Bottoni mobile */
+    .website-link, .route-button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        text-align: center;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+    
+    /* Dettagli venue mobile */
+    .venue-details {
+        margin-top: 15px;
+    }
+    
+    .detail-section {
+        margin-bottom: 12px;
+        padding: 10px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 8px;
+    }
+    
+    .detail-title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    
+    .detail-content {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+    
+    /* Transport icons mobile */
+    .transport-icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 8px;
+    }
+    
+    .transport-icon {
+        min-width: 30px;
+        height: 20px;
+        font-size: 0.7rem;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Legenda mobile */
+    .legend {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 15px;
+    }
+    
+    .legend table {
+        width: 100%;
+    }
+    
+    .legend-tip {
+        font-size: 0.8rem;
+        margin-top: 10px;
+        text-align: center;
+    }
+    
+    /* Footer mobile ottimizzato */
+    .footer {
+        margin-top: 30px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .footer-section h3, .footer-section h4 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+    
+    .footer-section p {
+        font-size: 0.85rem;
+        margin: 5px 0;
+    }
+    
+    .social-links {
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .footer-bottom {
+        font-size: 0.8rem;
+        padding: 15px;
+    }
+    
+    /* Note fluttuanti meno invasive su mobile */
+    .floating-notes {
+        opacity: 0.2;
+    }
+    
+    .floating-note {
+        font-size: 0.8rem;
+    }
+}
+
+/* Per schermi molto piccoli */
+@media (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .city-badge {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+    
+    #map {
+        height: 200px !important;
+    }
+    
+    .venue-card {
+        padding: 12px;
+    }
+}
