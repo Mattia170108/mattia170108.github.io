@@ -6,9 +6,9 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color:#99d65e;
+            background-color:#ffffff;
             min-height: 100vh;
-           background-color:   #4ecdc4;
+           background-color:   #f7a63b;
             overflow-x: hidden;
         }
 
@@ -77,7 +77,7 @@
             left: 50%;
             transform: translateX(-50%);
             font-size: 3rem;
-           background-color:   #4ecdc4;
+           background-color:   #782182;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -163,7 +163,7 @@
 
         .map-header i {
             font-size: 2rem;
-            color: #4ecdc4;
+            color: #f7a63b;
             animation: pulse 2s infinite;
         }
       
@@ -224,7 +224,7 @@
 
         .sidebar-header i {
             font-size: 1.5rem;
-            color: #4ecdc4;
+            color:  #f7a63b;
         }
 
         .venue-card {
@@ -258,12 +258,12 @@
         .venue-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            border-color: #4ecdc4;
+            border-color:  #f7a63b;
         }
 
         .venue-card.active {
             background: linear-gradient(135deg, rgba(78, 205, 196, 0.2), rgba(255, 107, 107, 0.1));
-            border: 2px solid #4ecdc4;
+            border: 2px solid  #f7a63b;
             box-shadow: 0 20px 40px rgba(78, 205, 196, 0.3);
         }
 
@@ -285,7 +285,7 @@
         }
 
         .venue-card:hover .venue-image {
-            border-color: #4ecdc4;
+            border-color:  #f7a63b;
             transform: scale(1.05);
         }
 
@@ -303,7 +303,7 @@
         }
 
         .venue-type {
-            color:  #4ecdc4;
+            color:   #f7a63b;
             font-size: 0.95rem;
             font-weight: 800;
             font-style: italic;
@@ -362,7 +362,7 @@
             padding: 15px;
             background: rgba(235, 235, 235, 0.936);
             border-radius: 12px;
-            border-left: 4px solid #4ecdc4;
+            border-left: 4px solid  #f7a63b;
         }
 
         .detail-title {
@@ -376,7 +376,7 @@
         }
 
         .detail-title i {
-            color: #4ecdc4;
+            color:  #f7a63b;
             font-size: 1.1rem;
         }
 
@@ -446,7 +446,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background-color:  #4ecdc4;
+            background-color:   #f7a63b;
             color: #3c3791;
             padding: 12px 20px;
             border-radius: 25px;
@@ -501,7 +501,7 @@
         }
 
         .normal-venue { background: linear-gradient(135deg, #ff6b6b, #ee5a52); }
-        .selected-venue { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .selected-venue { background: linear-gradient(135deg,  #f7a63b, #d89f19); }
 
         .legend-tip {
             margin-top: 20px;
@@ -603,7 +603,7 @@
         }
 
         .popup-button {
-            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            background: linear-gradient(135deg, #f7a63b, #f9c818);
             color: white;
             border: none;
             padding: 8px 16px;
@@ -680,12 +680,12 @@
         }
 
         .venues-sidebar::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+           background-color: white;
             border-radius: 10px;
         }
 
         .venues-sidebar::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #44a08d, #4ecdc4);
+            background: linear-gradient(135deg, #f7a63b, #f9c818);
         }
     .footer {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
