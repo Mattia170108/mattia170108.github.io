@@ -761,13 +761,13 @@
     }
     
     header h1 {
-        font-size: 1.8rem;
+        font-size: 4rem;
         margin: 10px 0;
         word-wrap: break-word;
     }
     
     .city-badge {
-        font-size: 0.9rem;
+        font-size: 2rem;
         padding: 8px 15px;
         margin: 10px auto;
         display: block;
